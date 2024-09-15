@@ -20,13 +20,9 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'POST');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-
-    console.log(req);
-    console.log(res);
     
     if (req.method === "POST") {
-        console.log(req.body);
-        let { guess }: { guess: string } = req.body; // Get guessed word
+        let guess: string = req.body.toString(); // Get guessed word
         const wotd = getWordOfTheDay(); // Get word of the day :P
         if (wotd === guess) {
             res.status(200).json({ guess: guess, was_correct: true });
