@@ -27,7 +27,7 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
   }
     
     if (req.method === "POST") {
-        let guess: string = req.body.toString(); // Get guessed word
+        let { guess }: { guess: string } = req.body; // Get guessed word
         const wotd = getWordOfTheDay(); // Get word of the day :P
         if (wotd === guess) {
             res.status(200).json({ guess: guess, was_correct: true });
