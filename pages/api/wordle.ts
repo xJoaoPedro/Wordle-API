@@ -18,8 +18,13 @@ type IncorrectResponse = {
 
 export default function handler(req: VercelRequest, res: VercelResponse) {    
     res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'POST');
+    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+    if (req.method === 'OPTIONS') {
+    // Retorna uma resposta 200 OK para preflight requests
+    return res.status(200).end();
+  }
     
     if (req.method === "POST") {
         let guess: string = req.body.toString(); // Get guessed word
