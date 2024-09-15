@@ -28,10 +28,10 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
 			res.status(200).json({ guess: guess, was_correct: true });
 			return;
 		} else {
-			if (guess.length === 5) {
 				// We only support 5-char words right now.
 				// Incorrect guess
 				let arr: CharacterInfo[] = [];
+			console.log(guess);
 
 				for (let i = 0; i < guess.length; i++) {
 					arr.push({
@@ -49,12 +49,6 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
 				};
 				res.status(200).json(resp);
 				return;
-			} else {
-				res
-					.status(400)
-					.json({ error: `Only 5 character words currently supported.` });
-				return;
-			}
 		}
 	} else {
 		res.status(405).json({ error: `${req.method} unsupported.` });
