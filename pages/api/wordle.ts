@@ -17,6 +17,9 @@ type IncorrectResponse = {
 };
 
 export default function handler(req: VercelRequest, res: VercelResponse) {
+    console.log(req);
+    console.log(res);
+    
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'POST');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -31,7 +34,6 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
             // We only support 5-char words right now.
             // Incorrect guess
             let arr: CharacterInfo[] = [];
-            console.log(guess);
 
             for (let i = 0; i < guess.length; i++) {
                 arr.push({
