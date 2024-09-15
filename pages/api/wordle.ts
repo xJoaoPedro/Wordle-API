@@ -17,6 +17,8 @@ type IncorrectResponse = {
 };
 
 export default function handler(req: VercelRequest, res: VercelResponse) {
+	res.setHeader('Access-Control-Allow-Origin', '*');
+	
 	if (req.method === "POST") {
 		let { guess }: { guess: string } = req.body; // Get guessed word
 		guess = guess.toLowerCase();
